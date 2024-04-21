@@ -103,9 +103,9 @@ namespace Game {
         public static Camera MainCamera {
             get {
                 if (m_mainCamera == null) {
-                    GameObject mainCameraGo = GameObject.Find("CameraFollowRoot/Main Camera");
+                    GameObject mainCameraGo = GameObject.Find("Main Camera");
                     if (null == mainCameraGo) {
-                        //Logs.LogError("Roy___" + "场景内无法搜索到路径下：CameraFollowRoot/Main Camera 的物件。");
+
                     }
                     else {
                         m_mainCamera = mainCameraGo.GetComponent<Camera>();

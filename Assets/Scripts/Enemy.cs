@@ -5,19 +5,9 @@ namespace Game {
         public float moveSpeed = 3f;
         private Transform m_Transform;
         private AStarFindPath.CalcObject pathObj;
-        private Transform m_child;
+        private int Id;
         private void Awake() {
             m_Transform = GetComponent<Transform>();
-            //m_child = this.transform.GetChild(0);
-            //m_child.eulerAngles = new Vector3(90, Random.Range(0,360f), 0);
-        }
-        // Start is called before the first frame update
-        void Start() {
-            FindPath();
-            ActorMgr.instance.AddActor(this);
-        }
-        private void OnDestroy() {
-            ActorMgr.instance.RemoveActor(this);
         }
         // Update is called once per frame
         void Update() {
@@ -32,7 +22,7 @@ namespace Game {
                     }
                 }
                 if (cur_index == 0) {//µ½´ïÖÕµã
-                    GameObject.Destroy(gameObject);
+                    ActorMgr.instance.Recycle(Id, this);
                     return;
                 }
                 else {
@@ -48,6 +38,12 @@ namespace Game {
             }
         }
 
+        public void Init(int _id)
+        {
+            Id = _id;
+            FindPath();
+        }
+
         private void FindPath() {
             BattleMgr.instance.AStarFindPath.FindPathAsync(BattleMgr.instance.GetAStarPoint(m_Transform.position), BattleMgr.instance.SunTowerPoint, (AStarFindPath.CalcObject _o) => {
                 pathObj = _o;
@@ -55,7 +51,7 @@ namespace Game {
         }
 
         public void Dead() {
-            GameObject.Destroy(gameObject);
+            ActorMgr.instance.Recycle(Id, this);
         }
 
 

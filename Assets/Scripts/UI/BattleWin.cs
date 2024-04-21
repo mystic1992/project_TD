@@ -9,11 +9,22 @@ public class BattleWin : MonoBehaviour
     public Button pauseBtn;
     public Button playBtn;
     public Button speedBtn;
+    public CubeButton[] cubeBtns;
 
     private void Awake() {
         pauseBtn.onClick.AddListener(OnPauseBtnClick);
         playBtn.onClick.AddListener(OnPlayBtnClick);
         speedBtn.onClick.AddListener(OnSpeedBtnClick);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.F1))
+        {
+            foreach (CubeButton c in cubeBtns) {
+                c.CreateCube(Random.Range(1, 8));
+            }
+        }
     }
 
 
