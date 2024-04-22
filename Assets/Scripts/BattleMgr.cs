@@ -1,4 +1,5 @@
 
+using System;
 using UnityEngine;
 
 namespace Game {
@@ -17,6 +18,14 @@ namespace Game {
 
         public AStarPoint SunTowerPoint {
             get { return sunTowerPoint; }
+        }
+
+        public int MapWidth {
+            get { return mapWidth; }
+        }
+
+        public int MapHeight {
+            get { return mapHeight; }
         }
 
         public void Init() {
@@ -46,7 +55,7 @@ namespace Game {
         }
         private int mapWidth;
         private int mapHeight;
-        public void CreateMap(int _mapWidth, int _mapHeight, GameObject ground, GameObject bg, GameObject sunTower)
+        public void CreateMap(int _mapWidth, int _mapHeight, GameObject ground, GameObject bg, GameObject sunTower, GameObject _monsterLair)
         {
             mapWidth = _mapWidth;
             mapHeight = _mapHeight;
@@ -71,10 +80,15 @@ namespace Game {
                 }
             }
             BattleMgr.instance.AStarFindPath.SetMap(mapData);
-            int sun_x = Random.Range(0, mapWidth);
-            int sun_z = Random.Range(0, 3);
+            int sun_x = UnityEngine.Random.Range(0, mapWidth);
+            int sun_z = UnityEngine.Random.Range(0, 3);
             GameObject sun = GameObject.Instantiate(sunTower, new Vector3(sun_x, 0, sun_z), Quaternion.identity);
             BattleMgr.instance.SetSunTower(sun_x, sun_z);
+            ///创建三个怪物巢穴
+            for (int x = 0; x < 3; x++) {
+                GameObject go = GameObject.Instantiate(_monsterLair, new Vector3(UnityEngine.Random.Range(0, mapWidth), 0, mapHeight - 1), Quaternion.identity);
+                go.transform.SetParent(GameNodeMgr.SceneNode);
+            }
         }
     }
 }

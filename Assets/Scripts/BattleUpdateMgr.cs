@@ -11,6 +11,7 @@ namespace Game {
         public Camera mainCamera;
         public GameObject block;
         public GameObject sunTower;
+        public GameObject monsterLair;
 
         private void Awake() {
             BattleMgr.instance.Init();
@@ -18,7 +19,7 @@ namespace Game {
 
         // Start is called before the first frame update
         void Start() {
-            BattleMgr.instance.CreateMap(mapWidth, mapHeight, ground, bg, sunTower);
+            BattleMgr.instance.CreateMap(mapWidth, mapHeight, ground, bg, sunTower, monsterLair);
             orthographicSize = mainCamera.orthographicSize;
         }
 
@@ -28,21 +29,6 @@ namespace Game {
         Vector3 curMouseWorldPosition;
         private float orthographicSize;
         void Update() {
-            if (Input.GetKeyUp(KeyCode.E)) {
-                CreateEnemy();
-            }
-            if (Input.GetMouseButtonUp(0)) {
-                //Vector3 postion = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
-                //int x = Mathf.CeilToInt(postion.x - 0.5f);
-                //int z = Mathf.CeilToInt(postion.z - 0.5f);
-                //if (0 <= x && x < mapWidth && 0 <= z && z < mapHeight && mapData[x,z] == 0) {
-                //    mapData[x, z] = 1;
-                //    GameObject go = Instantiate(block, new Vector3(x, 0, z), Quaternion.identity);
-                //    go.transform.SetParent(GameNodeMgr.SceneNode);
-                //    BattleMgr.instance.AStarFindPath.SetMapIndex(x,z,1);
-                //}
-
-            }
 
             if (Input.GetMouseButton(0)) {
                 curMouseWorldPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
@@ -60,9 +46,7 @@ namespace Game {
 
 
 
-        private void CreateEnemy() {
-            ActorMgr.instance.CreateActor(Random.Range(1, 6),new Vector3(Random.Range(0, mapWidth), 0, Random.Range(mapHeight - 3, mapHeight)));
-        }
+
 
     }
 }
