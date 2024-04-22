@@ -104,8 +104,8 @@ namespace Game {
 
         //上下左右寻路
         private void CheckPointIn4Direction(AStarPoint _point, AStarPoint _startPoint, ref AStarPoint _endPoint) {
-            for (int x = _point.x - 1; x <= _point.x + 1; x++) {
-                for (int y = _point.y - 1; y <= _point.y + 1; y++) {
+            for (int y = _point.y - 1; y <= _point.y + 1; y++) {
+                for (int x = _point.x - 1; x <= _point.x + 1; x++) {
                     if ((x >= 0 && x < map.GetLength(0) && y >= 0 && y < map.GetLength(1)) && !(x == _point.x && y == _point.y) && !(x != _point.x && y != _point.y)) {
                         if (map[x, y] == 0 && !IsInCloseList(x, y)) {
                             if (IsInOpenList(x, y)) {
