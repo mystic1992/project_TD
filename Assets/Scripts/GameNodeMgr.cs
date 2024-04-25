@@ -120,7 +120,7 @@ namespace Game {
         public static Camera UiCamera {
             get {
                 if (m_uiCamera == null) {
-                    GameObject uiCameraGo = GameObject.Find("UICamer");
+                    GameObject uiCameraGo = GameObject.Find("UI Camera");
                     if (null == uiCameraGo) {
                         //Logs.LogError("Roy___" + "场景内无法搜索到路径下：UICamer 的物件。");
                     }

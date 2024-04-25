@@ -80,5 +80,7 @@ public class CubeButton : MonoBehaviour,IPointerDownHandler, IDragHandler, IBegi
         {
             dragCube = go;
         }
+        Cube cube = dragCube.GetComponent<Cube>();
+        BattleWin.instance.SetCubeCtrl(cube);
     }
 }

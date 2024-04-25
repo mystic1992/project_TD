@@ -131,5 +131,6 @@ namespace Game {
 
     public enum MsgType {
         None,
+        OnCubeSet,
     }
 }

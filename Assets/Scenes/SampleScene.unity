@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37322453, g: 0.38088855, b: 0.35889676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -538,10 +538,11 @@ MonoBehaviour:
   mapWidth: 15
   mapHeight: 25
   ground: {fileID: 2714068107703215536, guid: 97aa1e27d270ddb4eab2b08f1230ec46, type: 3}
-  bg: {fileID: 2714068107703215536, guid: ed3a22f88f942314eabbbfe9365685fd, type: 3}
+  bg: {fileID: 2714068107703215536, guid: a1cc119b4d385fb44ad7f9f06556da08, type: 3}
   mainCamera: {fileID: 963194227}
   block: {fileID: 8338482458106443771, guid: 967a8aa4821936e40bdba51efd6e73cd, type: 3}
   sunTower: {fileID: 8338482458106443771, guid: e7c4cdf4f2dcf004db10edfedb4be69b, type: 3}
+  monsterLair: {fileID: 8338482458106443771, guid: 991140b8b7356564292cd7c9ea39bf2b, type: 3}
 --- !u!1 &1072196127
 GameObject:
   m_ObjectHideFlags: 0

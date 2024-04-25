@@ -10,7 +10,13 @@ public class MonsterLair : MonoBehaviour
     private LineRenderer lineRenderer;
     private void Awake() {
         lineRenderer = this.GetComponentInChildren<LineRenderer>();
+        MsgSend.RegisterMsg(MsgType.OnCubeSet, OnCubeSet);
     }
+
+    private void OnDestroy() {
+        MsgSend.UnregisterMsg(MsgType.OnCubeSet, OnCubeSet);
+    }
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -40,4 +46,9 @@ public class MonsterLair : MonoBehaviour
             }
         });
     }
+
+    private void OnCubeSet(object _obj) {
+        FindPath();
+    }
+    
 }
