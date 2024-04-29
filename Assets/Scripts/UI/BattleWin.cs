@@ -21,10 +21,12 @@ public class BattleWin : MonoBehaviour
     public Button playBtn;
     public Button speedBtn;
     public CubeButton[] cubeBtns;
-    public GameObject cubCtrl;
     public Button cubeCancelBtn;
     public Button cubeRotBtn;
     public Button cubeConfirmBtn;
+    public CubeMoveCtrl cubMoveCtrl;
+
+    private CubeButton curSelectCube;
     private void Awake() {
         _g_instance = this;
         pauseBtn.onClick.AddListener(OnPauseBtnClick);
@@ -34,7 +36,7 @@ public class BattleWin : MonoBehaviour
         cubeRotBtn.onClick.AddListener(OnCubeRotBtnClick);
         cubeConfirmBtn.onClick.AddListener(OnCubeConfirmBtnClick);
 
-        cubCtrl.SetActive(false);
+        cubMoveCtrl.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -49,7 +51,7 @@ public class BattleWin : MonoBehaviour
         if (curCube != null) {
             Vector3 pos = GameNodeMgr.MainCamera.WorldToScreenPoint(curCube.transform.position);
             Vector3 pos1 = GameNodeMgr.UiCamera.ScreenToWorldPoint(pos);
-            cubCtrl.transform.position = pos1;
+            cubMoveCtrl.transform.position = pos1;
         }
     }
 
@@ -67,21 +69,37 @@ public class BattleWin : MonoBehaviour
     }
 
     void OnCubeCancelBtnClick() {
-
+        if (curSelectCube != null) {
+            curSelectCube.ShowCube();
+        }
+        HideCubeCtrl();
     }
 
     void OnCubeRotBtnClick() {
         curCube.transform.localEulerAngles += new Vector3(0, 90, 0);
-        curCube.SetMap();
+        
     }
 
     void OnCubeConfirmBtnClick() {
-
+        if (curSelectCube != null) {
+            curSelectCube.DestroyCube();
+        }
+        curCube.SetMap();
+        HideCubeCtrl();
     }
     private Cube curCube;
-    public void SetCubeCtrl(Cube _cube) {
+    public void SetCubeCtrl(CubeButton _cubeBtn, Cube _cube) {
+        curSelectCube = _cubeBtn;
         curCube = _cube;
-        cubCtrl.SetActive(true);
+        cubMoveCtrl.gameObject.SetActive(true);
+        cubMoveCtrl.SetCube(_cube);
+    }
+
+
+
+    public void HideCubeCtrl() {
+        cubMoveCtrl.gameObject.SetActive(false);
+        cubMoveCtrl.SetCube(null);
     }
     
 }

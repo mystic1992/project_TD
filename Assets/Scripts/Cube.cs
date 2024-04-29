@@ -2,9 +2,9 @@ using Game;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Cube : MonoBehaviour
-{
+public class Cube : MonoBehaviour {
     public GameObject[] subCubes;
     // Start is called before the first frame update
     void Start()
@@ -28,4 +28,5 @@ public class Cube : MonoBehaviour
         }
         MsgSend.SendMsg(MsgType.OnCubeSet, null);
     }
+
 }

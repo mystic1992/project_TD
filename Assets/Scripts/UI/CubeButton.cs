@@ -25,11 +25,14 @@ public class CubeButton : MonoBehaviour,IPointerDownHandler, IDragHandler, IBegi
 
     public void OnPointerDown(PointerEventData _data)
     {
-        selectGo.SetActive(true);
+        //selectGo.SetActive(true);
     }
 
     public void OnBeginDrag(PointerEventData _data)
     {
+        if (curCube == null) {
+            return;
+        }
         CreateMoveCube();
         Vector3 pos = mainCamera.ScreenToWorldPoint(_data.position);
         int x = (int)(pos.x - 0.5f);
@@ -39,18 +42,21 @@ public class CubeButton : MonoBehaviour,IPointerDownHandler, IDragHandler, IBegi
 
     public void OnEndDrag(PointerEventData _data)
     {
-        Cube cube = dragCube.GetComponent<Cube>();
-        cube.SetMap();
+
 
     }
     public void OnDrag(PointerEventData _data)
     {
+        if (curCube == null) {
+            return;
+        }
         Vector3 pos = mainCamera.ScreenToWorldPoint(_data.position);
         int x = (int)(pos.x - 0.5f);
         int z = (int)(pos.z - 0.5f);
         dragCube.transform.position = new Vector3(x, 0, z);
     }
     private GameObject curCube;
+    
     public void CreateCube(int _id)
     {
         if (curCube != null)
@@ -81,6 +87,19 @@ public class CubeButton : MonoBehaviour,IPointerDownHandler, IDragHandler, IBegi
             dragCube = go;
         }
         Cube cube = dragCube.GetComponent<Cube>();
-        BattleWin.instance.SetCubeCtrl(cube);
+        BattleWin.instance.SetCubeCtrl(this,cube);
+        curCube.SetActive(false);
+    }
+
+    public void ShowCube() {
+        curCube.SetActive(true);
+        DestroyCube();
+    }
+
+    public void DestroyCube() {
+        id = 0;
+        if (curCube != null) {
+            GameObject.Destroy(curCube);
+        }
     }
 }

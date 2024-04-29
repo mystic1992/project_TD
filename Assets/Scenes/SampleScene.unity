@@ -190,6 +190,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &436605715 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4578315363519727601, guid: b04008716b4b17e4bbd35221ebaed697, type: 3}
+  m_PrefabInstance: {fileID: 470759275}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &436605717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436605715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &436605718
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436605715}
+  m_CullTransparentMesh: 1
 --- !u!1001 &470759275
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -344,6 +387,14 @@ PrefabInstance:
     - target: {fileID: 5553915970794551707, guid: b04008716b4b17e4bbd35221ebaed697, type: 3}
       propertyPath: m_Layer
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5634284740424210201, guid: b04008716b4b17e4bbd35221ebaed697, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 5634284740424210201, guid: b04008716b4b17e4bbd35221ebaed697, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 6445629742120056503, guid: b04008716b4b17e4bbd35221ebaed697, type: 3}
       propertyPath: m_Layer
@@ -538,7 +589,7 @@ MonoBehaviour:
   mapWidth: 15
   mapHeight: 25
   ground: {fileID: 2714068107703215536, guid: 97aa1e27d270ddb4eab2b08f1230ec46, type: 3}
-  bg: {fileID: 2714068107703215536, guid: a1cc119b4d385fb44ad7f9f06556da08, type: 3}
+  bg: {fileID: 2714068107703215536, guid: 645dc1b95c442ab45b15b59eb025cf37, type: 3}
   mainCamera: {fileID: 963194227}
   block: {fileID: 8338482458106443771, guid: 967a8aa4821936e40bdba51efd6e73cd, type: 3}
   sunTower: {fileID: 8338482458106443771, guid: e7c4cdf4f2dcf004db10edfedb4be69b, type: 3}

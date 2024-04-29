@@ -69,13 +69,13 @@ namespace Game {
                     go.transform.SetParent(GameNodeMgr.SceneNode);
                 }
             }
-            int bgWidth = (int)(mapWidth / 5f) + 1;
-            int bgHeight = (int)(mapHeight / 5f) + 1;
+            int bgWidth = (int)(mapWidth / 3f) + 1;
+            int bgHeight = (int)(mapHeight / 3f) + 1;
             for (int x = 0; x < bgWidth; x++)
             {
                 for (int z = 0; z < bgHeight; z++)
                 {
-                    GameObject go = GameObject.Instantiate(bg, new Vector3(x * 5, 0, z * 5), Quaternion.identity);
+                    GameObject go = GameObject.Instantiate(bg, new Vector3(x * 3, 0, z * 3), Quaternion.identity);
                     go.transform.SetParent(GameNodeMgr.SceneNode);
                 }
             }
