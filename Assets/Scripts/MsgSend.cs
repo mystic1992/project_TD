@@ -132,5 +132,7 @@ namespace Game {
     public enum MsgType {
         None,
         OnCubeSet,
+        BeginCreateMonster,
+        PauseCreateMonster,
     }
 }

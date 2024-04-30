@@ -1,9 +1,5 @@
 ﻿using Game;
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.AI;
-using static UnityEditor.PlayerSettings;
 
 namespace Assets.Scripts {
     public class Tower : MonoBehaviour {

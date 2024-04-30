@@ -45,12 +45,12 @@ namespace Game {
             return p;
         }
 
-        public void SetMapIndex(int _x, int _z)
+        public void SetMapIndex(int _x, int _z, int _index)
         {
-            if (0 <= _x && _x < mapWidth && 0 <= _z && _z < mapHeight && mapData[_x, _z] == 0)
+            if (0 <= _x && _x < mapWidth && 0 <= _z && _z < mapHeight && mapData[_x, _z] != _index)
             {
                 mapData[_x, _z] = 1;
-                aStarFindPath.SetMapIndex(_x, _z, 1);
+                aStarFindPath.SetMapIndex(_x, _z, _index);
             }
         }
         private int mapWidth;
@@ -89,6 +89,14 @@ namespace Game {
                 GameObject go = GameObject.Instantiate(_monsterLair, new Vector3(UnityEngine.Random.Range(0, mapWidth), 0, mapHeight - 1), Quaternion.identity);
                 go.transform.SetParent(GameNodeMgr.SceneNode);
             }
+        }
+
+
+        public int GetMapDataIndex(int _x, int _z) {
+            if (0 <= _x && _x < mapWidth && 0 <= _z && _z < mapHeight) {
+                return mapData[_x, _z];
+            }
+            return -1;
         }
     }
 }

@@ -25,6 +25,7 @@ public class BattleWin : MonoBehaviour
     public Button cubeRotBtn;
     public Button cubeConfirmBtn;
     public CubeMoveCtrl cubMoveCtrl;
+    public TowerButton[] towerBtns;
 
     private CubeButton curSelectCube;
     private void Awake() {
@@ -37,6 +38,14 @@ public class BattleWin : MonoBehaviour
         cubeConfirmBtn.onClick.AddListener(OnCubeConfirmBtnClick);
 
         cubMoveCtrl.gameObject.SetActive(false);
+
+        //≤‚ ‘¥˙¬Î
+        foreach (TowerButton t in towerBtns) {
+            t.CreateTower(Random.Range(1, 7));
+        }
+        foreach (CubeButton c in cubeBtns) {
+            c.CreateCube(Random.Range(1, 8));
+        }
     }
 
     private void Update()
@@ -62,6 +71,9 @@ public class BattleWin : MonoBehaviour
 
     void OnPlayBtnClick() {
         Time.timeScale = 1;
+        foreach (CubeButton c in cubeBtns) {
+            c.CreateCube(Random.Range(1, 8));
+        }
     }
 
     void OnSpeedBtnClick() {

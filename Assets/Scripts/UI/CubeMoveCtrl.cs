@@ -14,8 +14,8 @@ public class CubeMoveCtrl : MonoBehaviour, IDragHandler{
 
     public void OnDrag(PointerEventData _data) {
         Vector3 pos = GameNodeMgr.MainCamera.ScreenToWorldPoint(_data.position);
-        int x = (int)(pos.x - 0.5f);
-        int z = (int)(pos.z - 0.5f);
+        int x = (int)(pos.x + 0.5f);
+        int z = (int)(pos.z + 0.5f);
         curCube.transform.position = new Vector3(x, 0, z);
     }
 }

@@ -24,7 +24,7 @@ public class Cube : MonoBehaviour {
         {
             int x = (int)c.transform.position.x;
             int z = (int)c.transform.position.z;
-            BattleMgr.instance.SetMapIndex(x, z);
+            BattleMgr.instance.SetMapIndex(x, z, 1);
         }
         MsgSend.SendMsg(MsgType.OnCubeSet, null);
     }
