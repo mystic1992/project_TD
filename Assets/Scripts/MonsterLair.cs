@@ -43,9 +43,16 @@ public class MonsterLair : MonoBehaviour
     }
 
     private void CreateEnemy() {
-        ActorMgr.instance.CreateActor(Random.Range(1, 7), this.transform.position);
+        ActorMgr.instance.CreateActor(Random.Range(1, 7), this.transform.position, this);
     }
     private AStarFindPath.CalcObject path;
+    public AStarFindPath.CalcObject Path
+    {
+        get
+        {
+            return path;
+        }
+    }
     private void FindPath() {
         BattleMgr.instance.AStarFindPath.FindPathAsync(BattleMgr.instance.GetAStarPoint(transform.position), BattleMgr.instance.SunTowerPoint, (AStarFindPath.CalcObject _o) => {
             path = _o;

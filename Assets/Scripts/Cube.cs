@@ -22,8 +22,8 @@ public class Cube : MonoBehaviour {
     {
         foreach (var c in subCubes)
         {
-            int x = (int)c.transform.position.x;
-            int z = (int)c.transform.position.z;
+            int x = (int)(c.transform.position.x + 0.5f);
+            int z = (int)(c.transform.position.z + 0.5f);
             BattleMgr.instance.SetMapIndex(x, z, 1);
         }
         MsgSend.SendMsg(MsgType.OnCubeSet, null);

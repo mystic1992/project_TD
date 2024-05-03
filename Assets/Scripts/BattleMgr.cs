@@ -7,7 +7,14 @@ namespace Game {
     public class BattleMgr : Singleton<BattleMgr> {
 
 
-        
+        private int coinNum;
+        public int CoinNum
+        {
+            get
+            {
+                return coinNum;
+            }
+        }
 
         private AStarFindPath aStarFindPath;
         private AStarPoint sunTowerPoint;
@@ -97,6 +104,12 @@ namespace Game {
                 return mapData[_x, _z];
             }
             return -1;
+        }
+
+        public void AddCoin(int _value)
+        {
+            coinNum += _value;
+            BattleWin.instance.SetCoinNum(coinNum);
         }
     }
 }

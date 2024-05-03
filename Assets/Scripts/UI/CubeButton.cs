@@ -93,11 +93,13 @@ public class CubeButton : MonoBehaviour,IPointerDownHandler, IDragHandler, IBegi
 
     public void ShowCube() {
         curCube.SetActive(true);
-        DestroyCube();
+        if (dragCube != null)
+        {
+            GameObject.Destroy(dragCube);
+        }
     }
 
     public void DestroyCube() {
-        id = 0;
         if (curCube != null) {
             GameObject.Destroy(curCube);
         }

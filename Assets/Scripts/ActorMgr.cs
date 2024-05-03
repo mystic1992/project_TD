@@ -19,7 +19,7 @@
                 rootNode = go.transform;
             }
         }
-        public void CreateActor(int _id, Vector3 _pos)
+        public void CreateActor(int _id, Vector3 _pos, MonsterLair _monsterLair)
         {
             if (m_ActorCacheDict.ContainsKey(_id) || m_ActorCloneDict.ContainsKey(_id))
             {
@@ -33,7 +33,7 @@
                     transform.position = _pos;
                     Enemy component = transform.GetComponent<Enemy>();
                     component.enabled = true;
-                    component.Init(_id);
+                    component.Init(_id, _monsterLair);
                     m_ActorDict.Add(component.GetInstanceID(), component);
                 }
             }
@@ -45,7 +45,7 @@
                     transform.position = _pos;
                     Enemy component = transform.GetComponent<Enemy>();
                     component.enabled = true;
-                    component.Init(_id);
+                    component.Init(_id, _monsterLair);
                     m_ActorDict.Add(component.GetInstanceID(), component);
                 });
             }

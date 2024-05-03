@@ -38,7 +38,7 @@ public class BattleWin : MonoBehaviour
         cubeConfirmBtn.onClick.AddListener(OnCubeConfirmBtnClick);
 
         cubMoveCtrl.gameObject.SetActive(false);
-
+        coinNumTxt.text = "0";
         //≤‚ ‘¥˙¬Î
         foreach (TowerButton t in towerBtns) {
             t.CreateTower(Random.Range(1, 7));
@@ -101,6 +101,10 @@ public class BattleWin : MonoBehaviour
     }
     private Cube curCube;
     public void SetCubeCtrl(CubeButton _cubeBtn, Cube _cube) {
+        if (curSelectCube != null && curSelectCube != _cubeBtn && cubMoveCtrl.gameObject.activeInHierarchy)
+        {
+            OnCubeConfirmBtnClick();
+        }
         curSelectCube = _cubeBtn;
         curCube = _cube;
         cubMoveCtrl.gameObject.SetActive(true);
@@ -112,6 +116,11 @@ public class BattleWin : MonoBehaviour
     public void HideCubeCtrl() {
         cubMoveCtrl.gameObject.SetActive(false);
         cubMoveCtrl.SetCube(null);
+    }
+
+    public void SetCoinNum(int _num)
+    {
+        coinNumTxt.text = _num.ToString();
     }
     
 }
