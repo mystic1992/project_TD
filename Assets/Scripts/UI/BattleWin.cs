@@ -26,8 +26,10 @@ public class BattleWin : MonoBehaviour
     public Button cubeConfirmBtn;
     public CubeMoveCtrl cubMoveCtrl;
     public TowerButton[] towerBtns;
+    public Button startBtn;
 
     private CubeButton curSelectCube;
+    private List<int> towerNeedCoin = new List<int>() { 10, 30, 55,15, 40, 20, 25 };
     private void Awake() {
         _g_instance = this;
         pauseBtn.onClick.AddListener(OnPauseBtnClick);
@@ -36,12 +38,14 @@ public class BattleWin : MonoBehaviour
         cubeCancelBtn.onClick.AddListener(OnCubeCancelBtnClick);
         cubeRotBtn.onClick.AddListener(OnCubeRotBtnClick);
         cubeConfirmBtn.onClick.AddListener(OnCubeConfirmBtnClick);
+        startBtn.onClick.AddListener(OnStartBtnClick);    
 
         cubMoveCtrl.gameObject.SetActive(false);
         coinNumTxt.text = "0";
         //≤‚ ‘¥˙¬Î
         foreach (TowerButton t in towerBtns) {
-            t.CreateTower(Random.Range(1, 7));
+            int id = Random.Range(1, 7);
+            t.CreateTower(id, towerNeedCoin[id]);
         }
         foreach (CubeButton c in cubeBtns) {
             c.CreateCube(Random.Range(1, 8));
@@ -99,6 +103,11 @@ public class BattleWin : MonoBehaviour
         curCube.SetMap();
         HideCubeCtrl();
     }
+
+    void OnStartBtnClick() {
+        MsgSend.SendMsg(MsgType.BeginCreateMonster, null);
+    }
+
     private Cube curCube;
     public void SetCubeCtrl(CubeButton _cubeBtn, Cube _cube) {
         if (curSelectCube != null && curSelectCube != _cubeBtn && cubMoveCtrl.gameObject.activeInHierarchy)

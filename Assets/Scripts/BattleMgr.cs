@@ -16,6 +16,13 @@ namespace Game {
             }
         }
 
+        private int waveNum;
+        public int WaveNum {
+            get {
+                return waveNum;
+            }
+        }
+
         private AStarFindPath aStarFindPath;
         private AStarPoint sunTowerPoint;
         private int[,] mapData;
@@ -37,6 +44,7 @@ namespace Game {
 
         public void Init() {
             aStarFindPath = new AStarFindPath();
+            AddCoin(100);
         }
 
         public void SetSunTower(int _x, int _z) {

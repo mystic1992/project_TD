@@ -9,7 +9,7 @@ public class MonsterLair : MonoBehaviour
 {
     private float CreateEnemyInterval;
     private LineRenderer lineRenderer;
-    private bool isCreateEnemy = true;
+    private bool isCreateEnemy = false;
     private void Awake() {
         lineRenderer = this.GetComponentInChildren<LineRenderer>();
         MsgSend.RegisterMsg(MsgType.OnCubeSet, OnCubeSet);
@@ -74,6 +74,7 @@ public class MonsterLair : MonoBehaviour
     }
 
     private void OnBeginCreateMonster(object _obj) {
+        CreateEnemyInterval = 1f / BattleMgr.instance.WaveNum;
         isCreateEnemy = true;
     }
 
