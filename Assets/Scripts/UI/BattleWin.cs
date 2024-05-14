@@ -105,6 +105,7 @@ public class BattleWin : MonoBehaviour
     }
 
     void OnStartBtnClick() {
+        BattleMgr.instance.SetWave();
         MsgSend.SendMsg(MsgType.BeginCreateMonster, null);
     }
 

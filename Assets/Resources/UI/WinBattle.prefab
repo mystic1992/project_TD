@@ -1678,6 +1678,7 @@ MonoBehaviour:
   - {fileID: 7972700628214594071}
   - {fileID: 7355550499161520700}
   - {fileID: 7984940489121180126}
+  startBtn: {fileID: 103827910625959977}
 --- !u!1 &4442319614704742076
 GameObject:
   m_ObjectHideFlags: 0

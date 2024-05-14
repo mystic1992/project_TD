@@ -119,5 +119,9 @@ namespace Game {
             coinNum += _value;
             BattleWin.instance.SetCoinNum(coinNum);
         }
+
+        public void SetWave() {
+            waveNum = waveNum + 1;
+        }
     }
 }
