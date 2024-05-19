@@ -35,8 +35,8 @@ public class CubeButton : MonoBehaviour,IPointerDownHandler, IDragHandler, IBegi
         }
         CreateMoveCube();
         Vector3 pos = mainCamera.ScreenToWorldPoint(_data.position);
-        int x = (int)(pos.x + 0.5f);
-        int z = (int)(pos.z + 0.5f);
+        int x = Mathf.RoundToInt(pos.x);
+        int z = Mathf.RoundToInt(pos.z);
         dragCube.transform.position = new Vector3(x, 0, z);
     }
 
@@ -51,8 +51,8 @@ public class CubeButton : MonoBehaviour,IPointerDownHandler, IDragHandler, IBegi
             return;
         }
         Vector3 pos = mainCamera.ScreenToWorldPoint(_data.position);
-        int x = (int)(pos.x + 0.5f);
-        int z = (int)(pos.z + 0.5f);
+        int x = Mathf.RoundToInt(pos.x);
+        int z = Mathf.RoundToInt(pos.z);
         dragCube.transform.position = new Vector3(x, 0, z);
     }
     private GameObject curCube;

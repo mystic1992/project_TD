@@ -75,9 +75,9 @@ public class BattleWin : MonoBehaviour
 
     void OnPlayBtnClick() {
         Time.timeScale = 1;
-        foreach (CubeButton c in cubeBtns) {
-            c.CreateCube(Random.Range(1, 8));
-        }
+        //foreach (CubeButton c in cubeBtns) {
+        //    c.CreateCube(Random.Range(1, 8));
+        //}
     }
 
     void OnSpeedBtnClick() {
@@ -97,16 +97,21 @@ public class BattleWin : MonoBehaviour
     }
 
     void OnCubeConfirmBtnClick() {
-        if (curSelectCube != null) {
-            curSelectCube.DestroyCube();
+        if (curCube.SetMap())
+        {
+            if (curSelectCube != null)
+            {
+                curSelectCube.DestroyCube();
+            }
+            HideCubeCtrl();
         }
-        curCube.SetMap();
-        HideCubeCtrl();
+
     }
 
     void OnStartBtnClick() {
         BattleMgr.instance.SetWave();
         MsgSend.SendMsg(MsgType.BeginCreateMonster, null);
+        startBtn.gameObject.SetActive(false);
     }
 
     private Cube curCube;
@@ -131,6 +136,15 @@ public class BattleWin : MonoBehaviour
     public void SetCoinNum(int _num)
     {
         coinNumTxt.text = _num.ToString();
+    }
+
+    public void ShowStartBtn()
+    {
+        startBtn.gameObject.SetActive(true);
+        foreach (CubeButton c in cubeBtns)
+        {
+            c.CreateCube(Random.Range(1, 8));
+        }
     }
     
 }

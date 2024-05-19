@@ -167,6 +167,11 @@
                 queue.Enqueue(go);
                 m_ActorCacheDict.Add(id, queue);
             }
+
+            if (m_ActorDict.Count == 0)
+            {
+                BattleMgr.instance.AllEnemyDead();
+            }
         }
 
 
@@ -177,6 +182,11 @@
                 }
             }
             return null;
+        }
+
+        public int GetEnemyCount()
+        {
+            return m_ActorDict.Count;
         }
 
     }

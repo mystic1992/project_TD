@@ -13,8 +13,8 @@ namespace Game {
         // Update is called once per frame
         void Update() {
             if (monsterLair.Path != null) {
-                int cur_x = (int)(m_Transform.position.x + 0.5f);
-                int cur_z = (int)(m_Transform.position.z + 0.5f);
+                int cur_x = Mathf.RoundToInt(m_Transform.position.x);
+                int cur_z = Mathf.RoundToInt(m_Transform.position.z);
                 int cur_index = 0;
                 for (int i = monsterLair.Path.path.Count - 1; i >=0 ; i--) {
                     if (cur_x == monsterLair.Path.path[i].x && cur_z == monsterLair.Path.path[i].y) {

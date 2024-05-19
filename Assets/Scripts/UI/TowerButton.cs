@@ -34,8 +34,8 @@ public class TowerButton : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
         }
         CreateMoveTower();
         Vector3 pos = mainCamera.ScreenToWorldPoint(_data.position);
-        int x = (int)(pos.x + 0.5f);
-        int z = (int)(pos.z + 0.5f);
+        int x = Mathf.RoundToInt(pos.x);
+        int z = Mathf.RoundToInt(pos.z);
         dragTower.transform.position = new Vector3(x, 0, z);
     }
 
@@ -44,8 +44,8 @@ public class TowerButton : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
             return;
         }
         Vector3 pos = mainCamera.ScreenToWorldPoint(_data.position);
-        int x = (int)(pos.x + 0.5f);
-        int z = (int)(pos.z + 0.5f);
+        int x = Mathf.RoundToInt(pos.x);
+        int z = Mathf.RoundToInt(pos.z);
         if (BattleMgr.instance.GetMapDataIndex(x,z) == 1) {//可以创建
             BattleMgr.instance.AddCoin(-needCoin);
         }
@@ -59,8 +59,8 @@ public class TowerButton : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
             return;
         }
         Vector3 pos = mainCamera.ScreenToWorldPoint(_data.position);
-        int x = (int)(pos.x + 0.5f);
-        int z = (int)(pos.z + 0.5f);
+        int x = Mathf.RoundToInt(pos.x);
+        int z = Mathf.RoundToInt(pos.z);
         dragTower.transform.position = new Vector3(x, 0, z);
     }
     private GameObject curTower;

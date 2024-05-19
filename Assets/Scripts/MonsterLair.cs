@@ -30,15 +30,24 @@ public class MonsterLair : MonoBehaviour
         FindPath();
     }
     private float timer = 0;
+    private float duration;
     // Update is called once per frame
     void Update()
     {
-        if (isCreateEnemy) {
-            timer += Time.deltaTime;
-            if (timer > CreateEnemyInterval) {
-                timer = 0;
-                CreateEnemy();
-            }
+        if (!isCreateEnemy) {
+            return;
+        }
+        duration -= Time.deltaTime;
+        if (duration < 0)
+        {
+            isCreateEnemy = false;
+            return;
+        }
+        timer += Time.deltaTime;
+        if (timer > CreateEnemyInterval)
+        {
+            timer = 0;
+            CreateEnemy();
         }
     }
 
@@ -75,6 +84,7 @@ public class MonsterLair : MonoBehaviour
 
     private void OnBeginCreateMonster(object _obj) {
         CreateEnemyInterval = 1f / BattleMgr.instance.WaveNum;
+        duration = BattleMgr.instance.WaveDuration;
         isCreateEnemy = true;
     }
 

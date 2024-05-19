@@ -23,6 +23,15 @@ namespace Game {
             }
         }
 
+        private float waveDuration;
+        public float WaveDuration
+        {
+            get
+            {
+                return waveDuration;
+            }
+        }
+
         private AStarFindPath aStarFindPath;
         private AStarPoint sunTowerPoint;
         private int[,] mapData;
@@ -111,7 +120,7 @@ namespace Game {
             if (0 <= _x && _x < mapWidth && 0 <= _z && _z < mapHeight) {
                 return mapData[_x, _z];
             }
-            return -1;
+            return 99;
         }
 
         public void AddCoin(int _value)
@@ -122,6 +131,12 @@ namespace Game {
 
         public void SetWave() {
             waveNum = waveNum + 1;
+            waveDuration += 10f;
+        }
+
+        public void AllEnemyDead()
+        {
+            BattleWin.instance.ShowStartBtn();
         }
     }
 }

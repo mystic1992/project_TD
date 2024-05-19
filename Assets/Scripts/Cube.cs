@@ -6,27 +6,61 @@ using UnityEngine.EventSystems;
 
 public class Cube : MonoBehaviour {
     public GameObject[] subCubes;
-    // Start is called before the first frame update
+    private List<SpriteRenderer> spriteRendererLis = new List<SpriteRenderer>();
+    private bool isDrag;
     void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void SetMap()
     {
         foreach (var c in subCubes)
         {
-            int x = (int)(c.transform.position.x + 0.5f);
-            int z = (int)(c.transform.position.z + 0.5f);
-            BattleMgr.instance.SetMapIndex(x, z, 1);
+            SpriteRenderer s = c.GetComponent<SpriteRenderer>();
+            if (s != null)
+            {
+                spriteRendererLis.Add(s);
+            }
         }
-        MsgSend.SendMsg(MsgType.OnCubeSet, null);
+        isDrag = true;
+    }
+    private bool isCanSet = true;
+    // Update is called once per frame
+    void Update()
+    {
+        if (isDrag)
+        {
+            bool isAllCanSet = true;
+            foreach (var s in spriteRendererLis)
+            {
+                int x = Mathf.RoundToInt(s.transform.position.x);
+                int z = Mathf.RoundToInt(s.transform.position.z);
+                int index = BattleMgr.instance.GetMapDataIndex(x, z);
+                if (index > 0)
+                {
+                    s.color = Color.red;
+                    isAllCanSet = false;
+                }
+                else
+                {
+                    s.color = Color.white;
+                }
+            }
+            isCanSet = isAllCanSet;
+        }
+
+    }
+
+    public bool SetMap()
+    {
+        if (isCanSet)
+        {
+            foreach (var c in subCubes)
+            {
+                int x = Mathf.RoundToInt(c.transform.position.x);
+                int z = Mathf.RoundToInt(c.transform.position.z);
+                BattleMgr.instance.SetMapIndex(x, z, 1);
+            }
+            MsgSend.SendMsg(MsgType.OnCubeSet, null);
+            isDrag = false;
+        }
+        return isCanSet;
     }
 
 }
