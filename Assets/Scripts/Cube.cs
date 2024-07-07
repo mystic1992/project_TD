@@ -17,13 +17,29 @@ public class Cube : MonoBehaviour {
             {
                 spriteRendererLis.Add(s);
             }
+            s.sortingOrder = 2;
         }
         isDrag = true;
     }
     private bool isCanSet = true;
+    private bool isShake = false;
     // Update is called once per frame
     void Update()
     {
+        if (isShake)
+        {
+            shakeTiming += Time.deltaTime;
+            if (shakeTiming >= Launch.instance.shakeTime)
+            {
+                this.transform.position = startShakePos;
+                shakeTiming = 0;
+                isShake = false;
+                return;
+            }
+            Vector3 tempPos = new Vector3(startShakePos.x + Launch.instance.curve_x.Evaluate(shakeTiming), startShakePos.y , startShakePos.z + Launch.instance.curve_y.Evaluate(shakeTiming));
+            this.transform.position = tempPos;
+            return;
+        }
         if (isDrag)
         {
             bool isAllCanSet = true;
@@ -57,10 +73,25 @@ public class Cube : MonoBehaviour {
                 int z = Mathf.RoundToInt(c.transform.position.z);
                 BattleMgr.instance.SetMapIndex(x, z, 1);
             }
+            foreach (var s in spriteRendererLis)
+            {
+                s.sortingOrder = 1;
+            }
             MsgSend.SendMsg(MsgType.OnCubeSet, null);
             isDrag = false;
         }
+        else
+        {
+            StartShake();
+        }
         return isCanSet;
     }
-
+    private Vector3 startShakePos = Vector3.zero;
+    private float shakeTiming;
+    private void StartShake()
+    {
+        isShake = true;
+        startShakePos = this.transform.position;
+        shakeTiming = 0;
+    }
 }

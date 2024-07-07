@@ -221,6 +221,163 @@ MonoBehaviour:
   - {fileID: 2524083405635112115}
   - {fileID: 7912749735637604674}
   - {fileID: 2320498263067879446}
+  curve_x:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.0012817383
+      value: 0.0012817383
+      inSlope: 5.0899844
+      outSlope: 5.0899844
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.09942948
+      value: 0.5139003
+      inSlope: -2.4503639
+      outSlope: -2.4503639
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.20149118
+      value: -0.50576884
+      inSlope: 0.23192014
+      outSlope: 0.23192014
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.2415619
+    - serializedVersion: 3
+      time: 0.25205514
+      value: 0.2512156
+      inSlope: 0.035149198
+      outSlope: 0.035149198
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.23623228
+    - serializedVersion: 3
+      time: 0.30249798
+      value: -0.25089678
+      inSlope: 0.0059861634
+      outSlope: 0.0059861634
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.3200614
+    - serializedVersion: 3
+      time: 0.35304785
+      value: 0.13214639
+      inSlope: 0.25386715
+      outSlope: 0.25386715
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.40184718
+    - serializedVersion: 3
+      time: 0.40043223
+      value: -0.15865146
+      inSlope: -0.86620116
+      outSlope: -0.86620116
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.49804688
+      value: 0.0012817383
+      inSlope: 1.6384139
+      outSlope: 1.6384139
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  curve_y:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.0012817383
+      value: 0.0012817383
+      inSlope: 5.0899844
+      outSlope: 5.0899844
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.09942948
+      value: 0.5139003
+      inSlope: -2.4503639
+      outSlope: -2.4503639
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.20149118
+      value: -0.50576884
+      inSlope: 0.23192014
+      outSlope: 0.23192014
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.2415619
+    - serializedVersion: 3
+      time: 0.25205514
+      value: 0.2512156
+      inSlope: 0.035149198
+      outSlope: 0.035149198
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.23623228
+    - serializedVersion: 3
+      time: 0.30249798
+      value: -0.25089678
+      inSlope: 0.0059861634
+      outSlope: 0.0059861634
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.3200614
+    - serializedVersion: 3
+      time: 0.35304785
+      value: 0.13214639
+      inSlope: 0.25386715
+      outSlope: 0.25386715
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.40184718
+    - serializedVersion: 3
+      time: 0.40043223
+      value: -0.15865146
+      inSlope: -0.86620116
+      outSlope: -0.86620116
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.49804688
+      value: 0.0012817383
+      inSlope: 1.6384139
+      outSlope: 1.6384139
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  shakeTime: 0.5
 --- !u!1 &7912749735637604674
 GameObject:
   m_ObjectHideFlags: 0

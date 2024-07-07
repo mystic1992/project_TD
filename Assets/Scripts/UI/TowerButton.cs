@@ -74,6 +74,7 @@ public class TowerButton : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
         GameObject go = UnityEngine.Object.Instantiate<GameObject>(prefab);
         if (go != null) {
             go.transform.SetParent(this.transform);
+            go.transform.SetSiblingIndex(0);
             go.transform.localScale = Vector3.one;
             go.transform.localPosition = Vector3.zero;
             go.transform.localEulerAngles = Vector3.zero;

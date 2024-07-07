@@ -3,7 +3,20 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 namespace Game {
-    public class BattleUpdateMgr : MonoBehaviour {
+    public class Launch : MonoBehaviour {
+
+
+        private static Launch _g_instance;
+
+
+        public static Launch instance
+        {
+            get
+            {
+                return _g_instance;
+            }
+        }
+
         public int mapWidth = 10;
         public int mapHeight = 10;
         public GameObject ground;
@@ -12,8 +25,12 @@ namespace Game {
         public GameObject block;
         public GameObject sunTower;
         public GameObject monsterLair;
+        public AnimationCurve curve_x;
+        public AnimationCurve curve_y;
+        public float shakeTime;
 
         private void Awake() {
+            _g_instance = this;
             BattleMgr.instance.Init();
         }
 
