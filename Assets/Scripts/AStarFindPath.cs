@@ -2,7 +2,6 @@
 namespace Game {
     using System;
     using System.Collections.Generic;
-    using UnityEngine;
     public class AStarFindPath {
 
         public class CalcObject {

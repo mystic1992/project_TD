@@ -1,7 +1,6 @@
 ﻿namespace Game {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using UnityEngine;
     public class ActorMgr : Singleton<ActorMgr> {
         //实例字典

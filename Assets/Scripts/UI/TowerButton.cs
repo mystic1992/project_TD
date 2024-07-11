@@ -1,9 +1,6 @@
 ﻿using Assets.Scripts;
 using Game;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -37,6 +34,7 @@ public class TowerButton : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
         int x = Mathf.RoundToInt(pos.x);
         int z = Mathf.RoundToInt(pos.z);
         dragTower.transform.position = new Vector3(x, 0, z);
+        dragTowerMono.SetOrderInLayer(3);
     }
 
     public void OnEndDrag(PointerEventData _data) {
@@ -48,8 +46,11 @@ public class TowerButton : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
         int z = Mathf.RoundToInt(pos.z);
         if (BattleMgr.instance.GetMapDataIndex(x,z) == 1) {//可以创建
             BattleMgr.instance.AddCoin(-needCoin);
+            BattleMgr.instance.SetMapDataByTower(x,z);
+            dragTowerMono.SetOrderInLayer(2);
         }
         else {
+            BattleMgr.instance.RemoveTower(dragTowerMono);
             Destroy(dragTower);
         }
 
@@ -62,6 +63,14 @@ public class TowerButton : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
         int x = Mathf.RoundToInt(pos.x);
         int z = Mathf.RoundToInt(pos.z);
         dragTower.transform.position = new Vector3(x, 0, z);
+        if (BattleMgr.instance.GetMapDataIndex(x, z) == 1)
+        {//可以创建
+            dragTowerMono.SetColorRed(false);
+        }
+        else
+        {
+            dragTowerMono.SetColorRed(true);
+        }
     }
     private GameObject curTower;
     private int needCoin;
@@ -82,6 +91,7 @@ public class TowerButton : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
         }
     }
     private GameObject dragTower;
+    private Tower dragTowerMono;
     public void CreateMoveTower() {
         
         string path = string.Format("tower/Tower_{0}", id);
@@ -89,8 +99,9 @@ public class TowerButton : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
         GameObject go = UnityEngine.Object.Instantiate<GameObject>(prefab);
         if (go != null) {
             dragTower = go;
+            dragTowerMono = dragTower.GetComponent<Tower>();
         }
-        Tower tower = dragTower.GetComponent<Tower>();
+        
     }
 
 }

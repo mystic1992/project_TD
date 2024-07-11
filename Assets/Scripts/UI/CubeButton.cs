@@ -1,8 +1,5 @@
 using Game;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.EventSystems;
 
 public class CubeButton : MonoBehaviour,IPointerDownHandler, IDragHandler, IBeginDragHandler, IEndDragHandler
@@ -45,6 +42,8 @@ public class CubeButton : MonoBehaviour,IPointerDownHandler, IDragHandler, IBegi
 
 
     }
+    private int oldCube_X;
+    private int oldCube_Z;
     public void OnDrag(PointerEventData _data)
     {
         if (curCube == null) {
@@ -54,6 +53,12 @@ public class CubeButton : MonoBehaviour,IPointerDownHandler, IDragHandler, IBegi
         int x = Mathf.RoundToInt(pos.x);
         int z = Mathf.RoundToInt(pos.z);
         dragCube.transform.position = new Vector3(x, 0, z);
+        if (oldCube_X != x || oldCube_Z != z)
+        {
+            dragCube.GetComponent<Cube>().OnPosChange();
+            oldCube_X = x;
+            oldCube_Z = z;
+        }
     }
     private GameObject curCube;
     
@@ -77,6 +82,7 @@ public class CubeButton : MonoBehaviour,IPointerDownHandler, IDragHandler, IBegi
         }
     }
     private GameObject dragCube;
+
     public void CreateMoveCube()
     {
         string path = string.Format("cube/cube_{0}", id);
@@ -95,6 +101,7 @@ public class CubeButton : MonoBehaviour,IPointerDownHandler, IDragHandler, IBegi
         curCube.SetActive(true);
         if (dragCube != null)
         {
+            BattleMgr.instance.RemoveCube(dragCube.GetComponent<Cube>());
             GameObject.Destroy(dragCube);
         }
     }

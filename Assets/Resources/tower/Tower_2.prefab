@@ -220,3 +220,4 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a948d4a55958d0d4ca3d03435a43d174, type: 3}
   m_SpriteRenderer: {fileID: 149014490266562728}
   bulletId: 1
+  attackRange: 10

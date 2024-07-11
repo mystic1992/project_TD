@@ -1,11 +1,15 @@
 
+using Assets.Scripts;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game {
 
     public class BattleMgr : Singleton<BattleMgr> {
 
+        public List<Cube> cubes = new List<Cube>();
+        public List<Tower> towers = new List<Tower>();
 
         private int coinNum;
         public int CoinNum
@@ -73,8 +77,16 @@ namespace Game {
         {
             if (0 <= _x && _x < mapWidth && 0 <= _z && _z < mapHeight && mapData[_x, _z] != _index)
             {
-                mapData[_x, _z] = 1;
+                mapData[_x, _z] = _index;
                 aStarFindPath.SetMapIndex(_x, _z, _index);
+            }
+        }
+
+        public void SetMapDataByTower(int _x, int _z)
+        {
+            if (0 <= _x && _x < mapWidth && 0 <= _z && _z < mapHeight)
+            {
+                mapData[_x, _z] = 2;
             }
         }
         private int mapWidth;
@@ -137,6 +149,67 @@ namespace Game {
         public void AllEnemyDead()
         {
             BattleWin.instance.ShowStartBtn();
+        }
+
+        public void AddCube(Cube _cube)
+        {
+            cubes.Add(_cube);
+        }
+
+        public void RemoveCube(Cube _cube)
+        {
+            cubes.Remove(_cube);
+        }
+
+        public void AddTower(Tower _tower)
+        {
+            towers.Add(_tower);
+        }
+
+        public void RemoveTower(Tower _tower)
+        {
+            towers.Remove(_tower);
+        }
+
+        public void ResetMapData()
+        {
+            for (int x = 0; x < mapWidth; x++)
+            {
+                for (int z = 0; z < mapHeight; z++)
+                {
+                    mapData[x, z] = 0;
+                }
+            }
+            for (int i = 0; i < cubes.Count ; i++)
+            {
+                cubes[i].SetMapData();
+            }
+            for (int i = 0; i < towers.Count; i++)
+            {
+                towers[i].SetMapData();
+            }
+        }
+        
+        public bool GetCubeCanSet(Cube _cube, int _x, int _z)
+        {
+            for (int i = 0; i < cubes.Count; i++)
+            {
+                Cube tempCube = cubes[i];
+                if (_cube == tempCube)
+                {
+                    continue;
+                }
+                foreach (var _go in tempCube.subCubes)
+                {
+                    int x = Mathf.RoundToInt(_go.transform.position.x);
+                    int z = Mathf.RoundToInt(_go.transform.position.z);
+                    if (_x == x && _z == z)//²»ÄÜÉèÖÃ
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
     }
 }

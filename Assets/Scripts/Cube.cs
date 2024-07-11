@@ -1,8 +1,6 @@
 using Game;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class Cube : MonoBehaviour {
     public GameObject[] subCubes;
@@ -10,6 +8,7 @@ public class Cube : MonoBehaviour {
     private bool isDrag;
     void Start()
     {
+        BattleMgr.instance.AddCube(this);
         foreach (var c in subCubes)
         {
             SpriteRenderer s = c.GetComponent<SpriteRenderer>();
@@ -47,8 +46,8 @@ public class Cube : MonoBehaviour {
             {
                 int x = Mathf.RoundToInt(s.transform.position.x);
                 int z = Mathf.RoundToInt(s.transform.position.z);
-                int index = BattleMgr.instance.GetMapDataIndex(x, z);
-                if (index > 0)
+                bool isRed = !BattleMgr.instance.GetCubeCanSet(this, x, z);
+                if (isRed)
                 {
                     s.color = Color.red;
                     isAllCanSet = false;
@@ -61,6 +60,21 @@ public class Cube : MonoBehaviour {
             isCanSet = isAllCanSet;
         }
 
+    }
+    public void OnPosChange()
+    {
+        BattleMgr.instance.ResetMapData();
+        MsgSend.SendMsg(MsgType.OnCubeSet, null);
+    }
+
+    public void SetMapData()
+    {
+        foreach (var c in subCubes)
+        {
+            int x = Mathf.RoundToInt(c.transform.position.x);
+            int z = Mathf.RoundToInt(c.transform.position.z);
+            BattleMgr.instance.SetMapIndex(x, z, 1);
+        }
     }
 
     public bool SetMap()

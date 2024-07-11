@@ -7,8 +7,11 @@ namespace Assets.Scripts {
         public Sprite[] sprites;
         public SpriteRenderer m_SpriteRenderer;
         public int bulletId;
+        public float attackRange = 15f;
+
+
         private Transform m_Transform;
-        private float attackRange = 15f;
+        
         
         
         private void Awake() {
@@ -16,7 +19,7 @@ namespace Assets.Scripts {
         }
         // Use this for initialization
         void Start() {
-
+            BattleMgr.instance.AddTower(this);
         }
         private float attackSpeed = 0.5f;
         private float attackTimer = 0f;
@@ -83,10 +86,34 @@ namespace Assets.Scripts {
             
         }
 
+        public void SetColorRed(bool _isRed)
+        {
+            if (_isRed)
+            {
+                m_SpriteRenderer.color = Color.red;
+            }
+            else
+            {
+                m_SpriteRenderer.color = Color.white;
+            }
+        }
+
+        public void SetOrderInLayer(int _value)
+        {
+            m_SpriteRenderer.sortingOrder = _value;
+        }
+
         public static float getAngle(float _x, float _y) {
             float angle = 90f - (Mathf.Atan2(_y, _x) * 57.29578f);
             angle = (angle + 360f) % 360f;
             return angle;
+        }
+
+        public void SetMapData()
+        {
+            int x = Mathf.RoundToInt(transform.position.x);
+            int z = Mathf.RoundToInt(transform.position.z);
+            BattleMgr.instance.SetMapDataByTower(x, z);
         }
 
     }
